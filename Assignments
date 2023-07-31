@@ -1,0 +1,82 @@
+class Solution {
+    public int romanToInt(String s) {
+        HashMap<Character, Integer> Map = new HashMap<>();
+        Map.put('I', 1);
+        Map.put('V', 5);
+        Map.put('X', 10);
+        Map.put('L', 50);
+        Map.put('C', 100);
+        Map.put('D', 500);
+        Map.put('M', 1000);
+
+        int result = 0;
+        int prevValue = 0;
+
+        for (int i = s.length() - 1; i >= 0; i--) {
+            int currentValue = Map.get(s.charAt(i));
+            if (currentValue < prevValue) {
+                result -= currentValue;
+            } else {
+                result += currentValue;
+            }
+            prevValue = currentValue;
+        }
+
+        return result;
+        
+    }
+}
+
+
+
+
+import java.util.Arrays;
+
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        char[] sChars = s.toCharArray();
+        char[] tChars = t.toCharArray();
+        
+        Arrays.sort(sChars);
+        Arrays.sort(tChars);
+        
+        return Arrays.equals(sChars, tChars);
+    }
+}
+
+
+
+class Solution {
+    public String reverseWords(String s) {
+        String[] str = s.trim().split("\\s+");
+        String out = "";
+
+        // Iterate through the words in reverse order
+        for (int i = str.length - 1; i > 0; i--) {
+            out += str[i] + " ";
+        }
+
+        // Append the first word to the output (without trailing space)
+        return out + str[0];
+    }
+}
+
+class Solution {
+    public String longestCommonPrefix(String[] strs) {
+        String result = "";
+        int currIndex=0;
+        //basecase
+        if(strs.length == 1)
+        return strs[0];
+
+        while(true){
+        for(int i=0;i<strs.length-1;i++){
+        if(currIndex >= strs[i].length() || currIndex >= strs[i+1].length() || strs[i].charAt(currIndex) != strs[i+1].charAt(currIndex))
+                return result;
+            }
+            result = result + strs[0].charAt(currIndex);
+            currIndex+=1;
+        }
+        
+    }
+}
